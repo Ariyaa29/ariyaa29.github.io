@@ -74,7 +74,7 @@ header {
   gap: 1rem; /* vertical space between title*/
 
   transform: translate(-120vw, 120vh) scale(0.98);
-  /* entry animation; keep any shadow/orbit animations separate */
+
   animation: cardFadeIn 1.2s cubic-bezier(.77,0,.18,1) 0.2s forwards;
   overflow: visible;
 }
@@ -355,5 +355,6 @@ header {
   87.5%{ box-shadow: -8px -10px 30px rgba(0, 0, 0, 0.45); }
  100%  { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45); }
 }
+
 
 
