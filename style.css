@@ -1,0 +1,296 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Varela Round', Arial, sans-serif;
+  background: #181c2b;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+}
+.modern-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  background-image: url('backdrops/IMG_3623.jpg'); 
+  background-size: 125% 125%;
+  animation: modernBgMove 10s ease-in-out infinite alternate;
+  filter: blur(3px) brightness(0.95); 
+}
+@keyframes modernBgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 3.5rem;
+  margin-bottom: 2.5rem;
+  display: none;
+}
+
+.about-title {
+  font-family: 'Varela Round', Arial, sans-serif;
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: #b7c2e7;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-shadow: 0 4px 24px rgba(79,94,184,0.18);
+}
+
+.modern-card {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  /* increase the card's resting height so it appears taller */
+  min-height: 400px;
+  width: 100%;
+  box-shadow: 10px 30px 32px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 6rem;
+  padding: 3rem 2.5rem 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* vertical space between title*/
+
+  background-color: rgba(24, 28, 43, 0.5);
+
+  transform: translate(-120vw, 120vh) scale(0.98);
+  animation: cardFadeIn 1.2s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+}
+
+@keyframes cardFadeIn {
+  from {
+    transform: translate(-120vw, 120vh) scale(0.98);
+    background-color: rgba(24, 28, 43, 0);
+  }
+  to {
+    transform: translate(0, 0) scale(1);
+    background-color: rgba(24, 28, 43, 0.625);
+  }
+}
+
+.modern-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.35rem; /* reduce space below avatar so bio sits closer */
+  border: 4px solid #000000;
+  box-shadow: 0 2px 16px rgba(255, 255, 255, 0.18);
+}
+
+.main-title {
+  font-family: 'Varela Round', Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: black;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 4px 24px rgba(79,94,184,0.18);
+  text-align: center;
+}
+
+/* small card heading shown above the subtitle inside the card */
+.card-title {
+  font-family: 'Varela Round', Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #b7c2e7;
+  margin: 0 0 0.35rem 0;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: rgb(128, 180, 211);
+  margin: 0 0 1.5rem 0;
+  block-size: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-family: 'Varela Round', Arial, sans-serif;
+}
+
+.modern-socials {
+  display: flex;
+  gap: 1.5rem;
+  /* push socials to the bottom of the card while keeping some breathing room */
+  margin-top: auto;
+  margin-bottom: 0.75rem;
+}
+
+.modern-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(181, 182, 245, 0.37);
+  box-shadow: 0 2px 8px rgba(79,94,184,0.10);
+  border: none;
+  transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+.modern-icon-btn:hover, .modern-icon-btn:focus-visible {
+  background: rgba(196, 203, 228, 0.829);
+  transform: scale(1.16);
+  box-shadow: 0 4px 24px rgba(176, 176, 235, 0.18);
+}
+
+.modern-icon-img {
+  width: 36px;
+  height: 36px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Spotify hover tooltip card: appears above the spotify icon and visually
+   hides card content behind it while showing the page background via
+   backdrop-filter + semi-opaque overlay. */
+.spotify-btn {
+  position: relative; /* establish containing block for the tooltip */
+}
+.spotify-btn::after {
+  content: "Favorite Song";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(24, 28, 43, 0.85);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  backdrop-filter: blur(6px) saturate(120%);
+  color: #b7c2e7;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.6rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 15;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.discord-btn {
+  position: relative;
+}
+.discord-btn::after {
+  content: "My profile";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(24, 28, 43, 0.85);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  backdrop-filter: blur(6px) saturate(120%);
+  color: #b7c2e7;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.6rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 15;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.discord-btn:hover::after,
+.discord-btn:focus::after {
+  opacity: 1;
+  transform: translate(-50%, -6px);
+  pointer-events: auto;
+}
+.spotify-btn:hover::after,
+.spotify-btn:focus::after {
+  opacity: 1;
+  transform: translate(-50%, -6px);
+  pointer-events: auto;
+}
+
+/* Small-screen tweak: reduce tooltip size and spacing */
+@media (max-width: 420px) {
+  .spotify-btn::after {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .modern-card {
+    max-width: 97vw;
+    /* smaller min-height for tablet / small desktop */
+    min-height: 420px;
+    padding: 2rem 0.7rem 1.5rem 0.7rem;
+  }
+  .main-title {
+    font-size: 1.5rem;
+  }
+  .card-title {
+    font-size: 1.1rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .modern-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .modern-icon-img {
+    width: 28px;
+    height: 28px;
+  }
+  .modern-avatar {
+    width: 80px;
+    height: 80px;
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modern-card {
+    /* phone: reduce min-height so card doesn't overflow vertically */
+    min-height: 360px;
+    padding: 1.2rem 0.2rem 1rem 0.2rem;
+  }
+  .main-title {
+    font-size: 1rem;
+  }
+  .card-title {
+    font-size: 0.95rem;
+  }
+  .modern-icon-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .modern-icon-img {
+    width: 18px;
+    height: 18px;
+  }
+  .modern-avatar {
+    width: 48px;
+    height: 48px;
+    border-width: 2px;
+  }
+}
