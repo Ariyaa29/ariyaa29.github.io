@@ -1,60 +1,372 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bio</title>
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Varela Round', Arial, sans-serif;
+  background: #181c2b;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  <!-- Google Font: Varela Round -->
-  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
+.html, body {
+  height: 100%;
+}
 
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
-</head>
+body {
+  justify-content: center;
+  align-items: center;
+}
+.modern-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  background-image: url('backdrops/IMG_3623.jpg'); 
+  background-size: 125% 125%;
+  animation: modernBgMove 10s ease-in-out infinite alternate;
+  filter: blur(3px) brightness(0.95); 
+}
+@keyframes modernBgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
 
-<body>
-  <!-- Background -->
-  <div class="modern-bg"></div>
+header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 3.5rem;
+  margin-bottom: 2.5rem;
+  display: none;
+}
 
- <!-- Main Card -->
-  <main class="modern-card">
-    <img src="pfp.gif" alt="Avatar" class="modern-avatar" />
-    <h2 class="card-title">About me</h2>
-    <p class="subtitle">Hiyaaaa, <br>
-        I'm ariya <br> 
-        22, taken by my favorite human<em> Leo </em>🩷<br>
-        kinda obsessed with tech</p>
+.about-title {
+  font-family: 'Varela Round', Arial, sans-serif;
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: #6B3E2E;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-shadow: 0 6px 30px rgba(255,150,170,0.06);
+}
 
-    <!-- Social Links -->
-    <div class="modern-socials">
-      <a
-        href="https://discord.com/users/1406795421027926136"
-        class="modern-icon-btn discord-btn"
-        title="Discord"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src="icons/discord.png" alt="Discord" class="modern-icon-img" />
-      </a>
-            <a
-              href="https://open.spotify.com/track/2GDRgBKMBmo0uNUh2pLe77?si=cde7767aeba347c5"
-              class="modern-icon-btn spotify-btn"
-              title="Spotify"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="icons/spotify.png" alt="Spotify" class="modern-icon-img" />
-            </a>
-                            <a
-              href="https://youtu.be/PysVvOp0jiU?si=MWaC6LUdRMVgynZC&t=11"
-              class="modern-icon-btn spotify-btn"
-              title="Youtube"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="icons/youtube.png" alt="Youtube" class="modern-icon-img" />
-            </a>
-    </div>
-  </main>
-</body>
-</html>
+.modern-card {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  min-height: 400px;
+  width: 100%;
+  --border-bg: linear-gradient(to right,
+    rgba(255,186,166,0.95) 0%,
+    rgba(255,110,190,1) 50%,
+    rgba(255,210,230,0.95) 100%
+  );
+  --border-width: 6px; 
+
+  background: var(--border-bg);
+  border-radius: 6rem;
+  padding: 3rem 2.5rem 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  transform: translate(-120vw, 120vh) scale(0.98);
+  animation: cardFadeIn 1.2s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+  overflow: visible;
+}
+
+@keyframes cardFadeIn {
+  from {
+    transform: translate(-120vw, 120vh) scale(0.98);
+    background-color: rgba(24, 28, 43, 0);
+  }
+  to {
+    transform: translate(0, 0) scale(1);
+    background-color: rgba(24, 28, 43, 0.625);
+  }
+}
+
+.modern-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.35rem;
+    border: 3px solid rgba(255,255,255,0.06);
+    box-shadow: 0 0 28px 10px rgba(255,150,180,0.18),
+                0 6px 18px rgba(0,0,0,0.35);
+}
+
+.modern-card::after {
+    content: "";
+    position: absolute;
+    top: var(--border-width);
+    left: var(--border-width);
+    right: var(--border-width);
+    bottom: var(--border-width);
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    border-radius: calc(6rem - var(--border-width));
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: inset 0 10px 30px rgba(255,120,170,0.06);
+    border: 1px solid rgba(255,255,255,0.04);
+}
+.modern-card > * {
+  position: relative;
+  z-index: 2;
+}
+.modern-card::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    height: 108%;
+    width: 108%;
+    transform: translateX(-5%) scale(0.95);
+    filter: blur(16px);
+    background-image:
+      radial-gradient(ellipse at 50% 30%, rgba(255,165,175,0.6) 0%, rgba(255,165,175,0.18) 18%, transparent 38%),
+      linear-gradient(to left, rgba(255,186,166,0.65) 0%, rgba(255,110,190,0.65) 50%, rgba(255,210,230,0.6) 100%),
+      radial-gradient(ellipse at 50% 98%, rgba(255,160,190,0.12) 0%, rgba(200,190,255,0.06) 20%, transparent 45%);
+    background-repeat: no-repeat;
+    background-size: 80% 60%, 100% 100%, 140% 8%;
+    background-position: 50% 10%, center center, 50% 96%;
+    transition: opacity .5s;
+}
+.modern-card:hover::before {
+  opacity: 0;
+}
+
+.main-title {
+  font-family: 'Varela Round', Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #6B3E2E;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 6px 24px rgba(255,140,170,0.08);
+  text-align: center;
+}
+
+.card-title {
+  font-family: 'Varela Round', Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #6B3E2E;
+  margin: 0 0 0.35rem 0;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: #7A4565;
+  margin: 0 0 1.5rem 0;
+  block-size: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-family: 'Varela Round', Arial, sans-serif;
+}
+
+.accent {
+  color: #69407F;
+  text-shadow: 0 6px 20px rgba(105,64,127,0.12);
+  font-weight: 700;
+}
+
+.modern-socials {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: auto;
+  margin-bottom: 0.75rem;
+}
+
+.modern-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+    background: rgba(181, 182, 245, 0.37);
+  box-shadow: 0 2px 8px rgba(79,94,184,0.10);
+  border: none;
+  transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+.modern-icon-btn:hover, .modern-icon-btn:focus-visible {
+  background: rgba(196, 203, 228, 0.829);
+  transform: scale(1.16);
+  box-shadow: 0 4px 24px rgba(176, 176, 235, 0.18);
+}
+
+.modern-icon-img {
+  width: 36px;
+  height: 36px;
+  display: block;
+  object-fit: contain;
+}
+
+.discord-btn .modern-icon-btn {
+  background: rgba(255,195,160,0.15);
+}
+.spotify-btn .modern-icon-btn {
+  background: rgba(230,140,160,0.14);
+}
+.youtube-btn .modern-icon-btn {
+  background: rgba(200,160,220,0.14);
+}
+.discord-btn .modern-icon-btn:hover,
+.spotify-btn .modern-icon-btn:hover,
+.youtube-btn .modern-icon-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 26px rgba(255,140,180,0.12);
+}
+
+.spotify-btn {
+  position: relative;
+}
+.spotify-btn::after {
+  content: "Favorite Song";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(24, 28, 43, 0.85);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  backdrop-filter: blur(6px) saturate(120%);
+  color: #FFF6EE;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.6rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 15;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.discord-btn {
+  position: relative;
+}
+.discord-btn::after {
+  content: "My profile";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(24, 28, 43, 0.85);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  backdrop-filter: blur(6px) saturate(120%);
+  color: #FFF6EE;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.6rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 15;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.discord-btn:hover::after,
+.discord-btn:focus::after {
+  opacity: 1;
+  transform: translate(-50%, -6px);
+  pointer-events: auto;
+}
+.spotify-btn:hover::after,
+.spotify-btn:focus::after {
+  opacity: 1;
+  transform: translate(-50%, -6px);
+  pointer-events: auto;
+}
+
+@media (max-width: 420px) {
+  .spotify-btn::after {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .modern-card {
+    max-width: 97vw;
+    min-height: 420px;
+    padding: 2rem 0.7rem 1.5rem 0.7rem;
+  }
+  .main-title {
+    font-size: 1.5rem;
+  }
+  .card-title {
+    font-size: 1.1rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .modern-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .modern-icon-img {
+    width: 28px;
+    height: 28px;
+  }
+  .modern-avatar {
+    width: 80px;
+    height: 80px;
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modern-card {
+    min-height: 360px;
+    padding: 1.2rem 0.2rem 1rem 0.2rem;
+  }
+  .main-title {
+    font-size: 1rem;
+  }
+  .card-title {
+    font-size: 0.95rem;
+  }
+  .modern-icon-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .modern-icon-img {
+    width: 18px;
+    height: 18px;
+  }
+  .modern-avatar {
+    width: 48px;
+    height: 48px;
+    border-width: 2px;
+  }
+}
+
+@keyframes shadowOrbit {
+  0%   { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45); }
+  12.5%{ box-shadow: 8px 10px 30px rgba(0, 0, 0, 0.45); }
+  25%  { box-shadow: 14px 6px 30px rgba(0, 0, 0, 0.45); }
+  37.5%{ box-shadow: 18px 0px 30px rgba(0, 0, 0, 0.45); }
+  50%  { box-shadow: 14px -6px 30px rgba(0, 0, 0, 0.45); }
+  62.5%{ box-shadow: 8px -10px 30px rgba(0, 0, 0, 0.45); }
+  75%  { box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.45); }
+  87.5%{ box-shadow: -8px -10px 30px rgba(0, 0, 0, 0.45); }
+ 100%  { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45); }
+}
